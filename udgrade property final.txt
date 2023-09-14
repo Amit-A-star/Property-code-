@@ -1,0 +1,109 @@
+#include <iostream>
+#include <bits/stdc++.h>
+using namespace std;
+
+// Abstract base class
+class Ownership {
+protected:
+    // Encapsulation outside the class.
+    string name, father, mother;
+    double value;
+
+public:
+    // Constructor 
+    Ownership(string n, string f, string m, double v) : name(n), father(f), mother(m), value(v) {}
+
+    // Encapsulation
+    double getValue() {
+        return value;
+    }
+
+    // Encapsulation
+    void printPropertyDetails() {
+        cout << "\nProperty Value (Million): " << value << endl;
+    }
+
+    // Abstract function
+    virtual void printOwnerDetails() = 0; // Encapsulation
+};
+
+// Class Mother inheriting from Ownership
+class Mother : public Ownership {    
+public:
+    // Constructor 
+    Mother(string n, string f, string m, double v) : Ownership(n, f, m, v) {}
+
+    // Override: Encapsulation
+    void printOwnerDetails() override {
+        cout << "\nMother's Details:" << endl;
+        cout << "Owner's Name: " << name << endl;
+        cout << "Father's Name: " << father << endl;
+        cout << "Mother's Name: " << mother << endl;
+    }
+};
+
+// Class for Child inheriting from Ownership
+class Child : public Ownership {
+public:
+    // Constructor 
+    Child(string n, string f, string m, double v) : Ownership(n, f, m, v) {}
+
+    // Override: Encapsulation 
+    void printOwnerDetails() override {
+        cout << "\nChild's Details:" << endl;
+        cout << "Owner's Name: " << name << endl;
+        cout << "Father's Name: " << father << endl;
+        cout << "Mother's Name: " << mother << endl;
+    }
+};
+
+int main() {
+    char MotherAliveInput;
+
+    
+    Mother mother("Rabeya Begum", "Ratan Chawdhury", "Shamsunnahar", 0.8);
+    Child amit("Amit Hassain", "Delower Hossain", "Rabeya Begum", 4.1);
+    Child shukhi("Shukhi", "Delower Hossain", "Rabeya Begum", 1.36);
+    Child shahinur("Shahinur", "Delower Hossain", "Rabeya Begum", 1.36);
+    Child fatema("Fatema", "Delower Hossain", "Rabeya Begum", 1.36);
+
+    cout << "Rules:" << endl;
+    cout << "1. If Mother is Alive, then Mother will get 8/1 of the total property" << endl;
+    cout << "2. If there are sons, they will get double property of daughters" << endl;
+    cout << "3. If there are only daughters, they will get an equal share of the property" << endl;
+
+    cout << "\n*Distribution property to (1 son & 3 daughters)*" << endl;
+    cout << "\nPrevious Property Owner has total 10 crore of Property." << endl;
+
+    cout << "\nIs your mother alive? (Type 'Y' for Yes or 'N' for No)" << endl;
+    cin >> MotherAliveInput;
+
+    if (MotherAliveInput == 'Y' || MotherAliveInput == 'y') {
+        // Encapsulation calling function method
+        mother.printOwnerDetails();
+        mother.printPropertyDetails();
+        amit.printOwnerDetails();
+        amit.printPropertyDetails();
+        shukhi.printOwnerDetails();
+        shukhi.printPropertyDetails();
+        shahinur.printOwnerDetails();
+        shahinur.printPropertyDetails();
+        fatema.printOwnerDetails();
+        fatema.printPropertyDetails();
+    } else if (MotherAliveInput == 'N' || MotherAliveInput == 'n') {
+        // Encapsulation: Calling function method
+        amit.printOwnerDetails();
+        amit.printPropertyDetails();
+        shukhi.printOwnerDetails();
+        shukhi.printPropertyDetails();
+        shahinur.printOwnerDetails();
+        shahinur.printPropertyDetails();
+        fatema.printOwnerDetails();
+        fatema.printPropertyDetails();
+    } else {
+        cout << "Invalid input. Please enter 'Y' for Yes or 'N' for No." << endl;
+    }
+
+    return 0;
+}
+
